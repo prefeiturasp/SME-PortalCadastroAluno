@@ -1,0 +1,9 @@
+[submodule "Backend"]
+	path = Backend
+	url = git@github.com:prefeiturasp/SME-PortalCadastroAluno-BackEnd.git
+[submodule "BackEnd"]
+	path = BackEnd
+	url = git@github.com:prefeiturasp/SME-PortalCadastroAluno-BackEnd.git
+[submodule "FrontEnd"]
+	path = FrontEnd
+	url = git@github.com:prefeiturasp/SME-PortalCadastroAluno-FrontEnd.git
