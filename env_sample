@@ -1,0 +1,35 @@
+# DJANGO SETTINGS
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_DEBUG=False
+DJANGO_SECRET_KEY=IywCEE8GWBhxPxlUb9nnxqpPhzdZDAZt
+#DJANGO_ALLOWED_HOSTS=localhost,alunos.local,127.0.0.1,127.0.1.1
+DJANGO_ALLOWED_HOSTS=*
+CORS_ORIGIN_WHITELIST=*
+ADMIN_URL=admin/
+# POSTGRES
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=12345qw
+POSTGRES_HOST=db_alunos
+POSTGRES_PORT=5432
+POSTGRES_DB=aluno
+# PG ADMIN
+PGADMIN_DEFAULT_EMAIL=weslei.souza@amcom.com.br
+PGADMIN_DEFAULT_PASSWORD=adminadmin
+# REDIS
+REDIS_LOCATION=redis://redis_alunos:6379/1
+REDIS_URL=redis://redis_alunos:6379/1
+#SENTRY INTEGRATION
+DSN_SENTRY=http://be9af8cd63c54786831e245153fa258f@localhost:9000/1
+# NGINX
+SERVER_NAME=alunos.local
+API_URL=http://alunos.local/api
+EMAIL_BACKEND=des.backends.ConfiguredEmailBackend
+DJANGO_EMAIL_BACKEND=des.backends.ConfiguredEmailBackend
+# Front
+URL_VIDEO=https://www.youtube.com/embed/vXeYQcDX6t8
+URL_API=http://alunos.local/api/dados-responsavel/busca_dados/
+URL_API_DEV_ATUALIZAR_CADASTRO=http://alunos.loca/api/alunos/
+TOKEN=Token 5dcac9b6f4261a0003bcafe80392dc120a2fb400
+# API
+DJANGO_EOL_API_TOKEN=d51de7294d5ee66a22d9a96d0fa9f372f3870976
+DJANGO_EOL_API_URL=https://hom-smecieduapi.sme.prefeitura.sp.gov.br/uniformes
