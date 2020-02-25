@@ -1,53 +1,34 @@
 version: "3"
 services:
+  proxy:
+    build: .
+    env_file: .env
+    ports:
+      - 80:80
 
   frontend_alunos:
-    container_name: alunos-frontend
-    image: coad2019/alunos-frontend
-    env_file: .env
-    depends_on:
-      - db_alunos
-      - api_alunos
+    build: ./FrontEnd/
+    env_file: ./FrontEnd/.env
 
-  db_alunos:
-    container_name: db_alunos
+  db:
     image: postgres:11.2-alpine
     restart: always
-    env_file: .env
+    env_file: ./Backend/.env
     volumes:
-      - ../alunos-postgres-data:/var/lib/postgresql/data
-    ports:
-      - 5435:5432
+      - ./pgdata:/var/lib/postgresql/data
 
-  api_alunos:
-    container_name: alunos-backend
-    image: coad2019/alunos-api
-    command: "gunicorn config.wsgi:application --bind=0.0.0.0:8003 -w 8"
-    env_file: .env
-    ports:
-      - 8003:8000
+  backend:
+    build: ./Backend
+    env_file: ./Backend/.env
     depends_on:
-      - db_alunos
-      - redis_alunos
+      - db
+      - redis
     volumes:
-      - ../SME-Proxy/django_media_alunos:/code/sme_alunos_apps/media
-      - ../SME-Proxy/django_static_alunos:/code/staticfiles
+      - ./Backend/media:/code/sme_alunos_apps/media
+      - ./Backend/staticfiles:/code/staticfiles
 
-  celery_alunos:
-    container_name: celery_alunos
-    restart: always
-    image: coad2019/alunos-api
-    command: "celery -A config worker --loglevel=info --concurrency=3 -n worker1@%h"
-    env_file: .env
-    depends_on:
-      - redis_alunos
-
-
-  redis_alunos:
-    container_name: redis_alunos
+  redis:
     image: redis:5.0.0-alpine
-    ports:
-      - "6376:6379"
 
 networks:
   default:
